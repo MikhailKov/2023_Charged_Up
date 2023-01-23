@@ -11,7 +11,7 @@ public class ArcadeMovement extends CommandBase {
     // otherwise, it will just use the constant as the thrust for everything.
 
     // {thrust const, thrustX, thrustY}
-    public double[] thrustConstant = {0, 0, 0};
+    public static double[] thrustConstant = {0, 0, 0};
     public XboxController controller;
 
     public ArcadeMovement() {

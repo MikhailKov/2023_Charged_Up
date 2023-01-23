@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import java.lang.Math;
+
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.Victor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -11,7 +13,9 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.ArcadeMovement;
 
 /** Add your docs here. */
 public class DriveTrain extends SubsystemBase{
@@ -40,6 +44,45 @@ public class DriveTrain extends SubsystemBase{
         driveStick = RobotMap.XController;
         //use encoders this year --> gives input from the motor, can help control speed
         // setDefaultCommand(new robotMovement());
+    }
+
+    public double[] check() {
+        double[] thrust = ArcadeMovement.thrustConstant;
+        //Imagine as vector:
+        //Thrust[1] = x, Thrust[2] = y
+        //find speed of encoder left
+        double speedEncoderL = encoderL.getRate();       
+        //find speed of encoder right
+        double speedEncoderR = encoderR.getRate();
+        double leftScale;
+        double rightScale;
+
+        //Used https://xiaoxiae.github.io/Robotics-Simplified-Website/drivetrain-control/arcade-drive/
+        if(thrust[1] < 0) {
+            leftScale = Math.abs(thrust[2])-Math.abs(thrust[1]);
+            rightScale = Math.abs(thrust[2]);
+        }
+        else if(thrust[1] > 0) {
+            rightScale = Math.abs(thrust[2])-Math.abs(thrust[1]);
+            leftScale = Math.abs(thrust[2]);
+        }
+        else {
+            rightScale = Math.abs(thrust[2]);
+            leftScale = rightScale;
+        }
+
+        double speedL = speedEncoderL/leftScale;
+        double speedR = speedEncoderR/rightScale;
+
+        double error = speedL-speedR;
+
+        speedL += (.5 * error);
+        speedR -= (.5 * error);
+
+        double[] newThrust = {thrust[0], speedEncoderL/speedL, speedEncoderR/speedR};
+        System.out.println(newThrust);
+
+        return newThrust;
     }
 
     // left and right = speed; 0-1??
