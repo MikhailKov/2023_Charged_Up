@@ -32,19 +32,19 @@ public class ArcadeMovement extends CommandBase implements Runnable{
             thrustConstant[1] = thrustConstant[0];
             thrustConstant[2] = thrustConstant[0];
         } else if (thrustConstant[0] == 0) {
-            thrustConstant[1] = controller.getLeftX();
-            thrustConstant[2] = controller.getLeftY(); 
+            thrustConstant[1] = RobotMap.analogLeft.getX();
+            thrustConstant[2] = RobotMap.analogLeft.getY(); 
         }
 
         if(controller.getLeftY() >= 0) {
-            if(controller.getLeftX() >= 0) {
+            if(RobotMap.analogLeft.getX() >= 0) {
                 Robot.Drive.arcadeDrive(thrustConstant[1], (thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[2]);
 
             } else {
                 Robot.Drive.arcadeDrive((thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[1], (thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[2]);
             }
         } else {
-            if(controller.getLeftX() >= 0) {
+            if(RobotMap.analogLeft.getX() >= 0) {
                 Robot.Drive.arcadeDrive(thrustConstant[1], thrustConstant[2]);
             } else {
                 Robot.Drive.arcadeDrive((thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[1], thrustConstant[2]);
