@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class ArcadeMovement extends CommandBase {
+public class ArcadeMovement extends CommandBase implements Runnable{
 
     // set to 0 if not constant thrust - you want it to go faster when u push joystick further
     // otherwise, it will just use the constant as the thrust for everything.
@@ -16,6 +16,8 @@ public class ArcadeMovement extends CommandBase {
 
     public ArcadeMovement() {
         controller = RobotMap.XController;
+        System.out.println("arcade movt");
+        execute();  
     }
 
     @Override
@@ -24,25 +26,25 @@ public class ArcadeMovement extends CommandBase {
     }
     
     @Override
-    public void execute() {
+    public void run() {
         
         if (thrustConstant[0] > 0) {
             thrustConstant[1] = thrustConstant[0];
             thrustConstant[2] = thrustConstant[0];
         } else if (thrustConstant[0] == 0) {
-            thrustConstant[1] = controller.getRightX();
-            thrustConstant[2] = controller.getRightY(); 
+            thrustConstant[1] = controller.getLeftX();
+            thrustConstant[2] = controller.getLeftY(); 
         }
 
-        if(controller.getRightY() >= 0) {
-            if(controller.getRightX() >= 0) {
+        if(controller.getLeftY() >= 0) {
+            if(controller.getLeftX() >= 0) {
                 Robot.Drive.arcadeDrive(thrustConstant[1], (thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[2]);
 
             } else {
                 Robot.Drive.arcadeDrive((thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[1], (thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[2]);
             }
         } else {
-            if(controller.getRightX() >= 0) {
+            if(controller.getLeftX() >= 0) {
                 Robot.Drive.arcadeDrive(thrustConstant[1], thrustConstant[2]);
             } else {
                 Robot.Drive.arcadeDrive((thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[1], thrustConstant[2]);

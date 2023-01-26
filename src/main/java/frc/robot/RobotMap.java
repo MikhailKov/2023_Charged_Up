@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -67,6 +68,7 @@ public class RobotMap {
 
         
         public static JoystickButton aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton;
+        public static Joystick analogLeft, analogRight;
         public static final int XBOX_PORT = 1;
         public static final XboxController XController = new XboxController(XBOX_PORT);
 
@@ -94,6 +96,8 @@ public class RobotMap {
                 backButton = new JoystickButton(XController, 7);
                 startButton = new JoystickButton(XController, 8);
                 leftStickButton = new JoystickButton(XController, 9);
-                rightStickButton = new JoystickButton(XController, 10);
+                //rightStickButton = new JoystickButton(XController, 10);
+                analogLeft = new Joystick(1);
+                // analogRight = new Joystick(2);
         }
 }

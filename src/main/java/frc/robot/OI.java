@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot;
 
+import edu.wpi.first.wpilibj.event.EventLoop;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
 
@@ -15,7 +16,7 @@ import frc.robot.commands.*;
  */
 public class OI {
 
-    private static final int LEFT_STICK_PRESS = 0, RIGHT_STICK_PRESS = 1;    
+    // private static final int LEFT_STICK_PRESS = 0, RIGHT_STICK_PRESS = 1;    
 
   public OI() {
     // TODO: remap the buttons to things
@@ -31,9 +32,13 @@ public class OI {
     
     // RobotMap.leftStickButton.whenHeld(new movement(LEFT_STICK_PRESS));
     // RobotMap.rightStickButton.whenHeld(new movement(RIGHT_STICK_PRESS));
-    RobotMap.rightStickButton.whileTrue(new ArcadeMovement());
-    
-    /*
+    //RobotMap.analogRight.get(new ArcadeMovement());
+    EventLoop run = new EventLoop();
+    ArcadeMovement driving = new ArcadeMovement();
+    run.bind(driving);
+
+    RobotMap.analogLeft.trigger(run);
+;      /*
     Goals for Xbox Controller Button Pressing Mapping
     -------------------------------------------------
     D-Pad: Fine Movement Control (X)

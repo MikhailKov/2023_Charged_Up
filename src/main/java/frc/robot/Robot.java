@@ -42,8 +42,8 @@ public class Robot extends TimedRobot {
    */
 
   public void robotInit() {
+    //startCompetition();
     RobotMap.init();
-    
     Drive = new DriveTrain();
     Cameras = new AprilTagVision();
     // Cameras = new Vision();
@@ -143,10 +143,18 @@ public class Robot extends TimedRobot {
     
   }
 
+  @Override
+  public void testInit() {
+    // LiveWindow.setEnabled(false);
+    //robotInit();
+    System.out.println("hi");
+  }
+
   /**
    * This function is called periodically during test mode.
    */
   @Override
   public void testPeriodic() {
+    System.out.println("bye");
   }
 }
