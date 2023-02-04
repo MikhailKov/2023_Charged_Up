@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.ArcadeMovement;
 
 /** Add your docs here. */
 public class DriveTrain extends SubsystemBase{
@@ -94,6 +93,7 @@ public class DriveTrain extends SubsystemBase{
     // unreverses the x and y vals
     public void arcadeDrive(double x, double y) {
         // robotDrive.arcadeDrive(-driveStick.getRightY(), driveStick.getRightX());
-        robotDrive.arcadeDrive(-y, x);
+        System.out.println(-1 * y + " + " + x);        
+        robotDrive.arcadeDrive(-y, -x);
     }
 }

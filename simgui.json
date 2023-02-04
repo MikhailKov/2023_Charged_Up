@@ -1,29 +1,46 @@
 {
   "NTProvider": {
     "types": {
-      "/FMSInfo": "FMSInfo"
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/ArcadeMovement": "Subsystem",
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
     }
   },
   "NetworkTables": {
-    "Persistent Values": {
-      "open": false
-    },
     "transitory": {
       "CameraPublisher": {
         "April Tag Detection": {
           "open": true
         },
+        "USB Camera 1": {
+          "open": true
+        },
+        "open": true
+      },
+      "FMSInfo": {
         "open": true
       },
       "LiveWindow": {
         ".status": {
           "open": true
-        }
+        },
+        "AprilTagVision": {
+          "open": true
+        },
+        "DriveTrain": {
+          "open": true
+        },
+        "Ungrouped": {
+          "open": true
+        },
+        "open": true
       },
       "Shuffleboard": {
         ".recording": {
           "open": true
-        }
+        },
+        "open": true
       },
       "SmartDashboard": {
         "open": true

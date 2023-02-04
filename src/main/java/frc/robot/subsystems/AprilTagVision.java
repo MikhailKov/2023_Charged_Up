@@ -130,7 +130,7 @@ public class AprilTagVision extends SubsystemBase {
     void tagDetection() {
         
         // setup camera & video
-        UsbCamera camera = CameraServer.startAutomaticCapture(1);
+        UsbCamera camera = CameraServer.startAutomaticCapture();
         camera.setResolution(RobotMap.CAM_WID, RobotMap.CAM_HEI);
 
         cvSink = CameraServer.getVideo();

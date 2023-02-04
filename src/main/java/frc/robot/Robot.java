@@ -5,6 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 package frc.robot;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Solenoid;
 //this is a test change
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
-//import frc.robot.commands.Intake.shoot;
 //import java.lang.Math;
 //import frc.robot.OI; unused
 import frc.robot.commands.autonomous.*;
@@ -31,7 +32,8 @@ public class Robot extends TimedRobot {
   public static DriveTrain Drive; // could be redundant , if we delete drivetrain get rid of this
   public static AprilTagVision Cameras; // used for helping line up bot thru apriltags use 16h5
   public static OI m_oi;
-
+  public static ArcadeMovement arcade;
+  public static Solenoid solenoid;
   public Command m_autonomousCommand;
   public SendableChooser<Command> m_chooser;
   
@@ -49,8 +51,9 @@ public class Robot extends TimedRobot {
     Cameras = new AprilTagVision();
     // Cameras = new Vision();
     m_oi = new OI();
+    arcade = new ArcadeMovement();
     // may use again later
-
+    //solenoid = new Solenoid(PneumaticsModuleType.CTREPCM, 8);
     // m_chooser = new SendableChooser<Command>();
     // m_chooser.setDefaultOption("auto1", new ParallelCommandGroup(
     //   new dropShooter(), new scuffedCommand()
@@ -73,6 +76,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    arcade.periodic(); /*
+    if(RobotMap.XController.getAButtonPressed()) {
+      solenoid.toggle();
+    } */
   }
 
   /**
@@ -148,7 +155,6 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // LiveWindow.setEnabled(false);
     //robotInit();
-    System.out.println("hi");
   }
 
   /**
@@ -156,6 +162,5 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
-    System.out.println("bye");
   }
 }

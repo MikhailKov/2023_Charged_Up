@@ -22,6 +22,7 @@ public class OI {
     // TODO: remap the buttons to things
 
     // RobotMap.aButton.whenPressed(new turnToGoal());    
+    //RobotMap.aButton.onTrue(new ClampPiston(0));
     // RobotMap.bButton.whenPressed(new testCommand());
     // RobotMap.xButton.whenPressed(new dropShooter());
     // RobotMap.yButton.whenPressed(new climb()); 
@@ -33,12 +34,7 @@ public class OI {
     // RobotMap.leftStickButton.whenHeld(new movement(LEFT_STICK_PRESS));
     // RobotMap.rightStickButton.whenHeld(new movement(RIGHT_STICK_PRESS));
     //RobotMap.analogRight.get(new ArcadeMovement());
-    EventLoop run = new EventLoop();
-    ArcadeMovement driving = new ArcadeMovement();
-    run.bind(driving);
-
-    RobotMap.analogLeft.trigger(run);
-;      /*
+    /*
     Goals for Xbox Controller Button Pressing Mapping
     -------------------------------------------------
     D-Pad: Fine Movement Control (X)
