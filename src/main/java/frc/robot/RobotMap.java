@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.Joystick;
@@ -39,7 +40,7 @@ public class RobotMap {
                         DRIVE_PID_ANGLE_KP = 0.02, DRIVE_PID_ANGLE_KI = 0.001, DRIVE_PID_ANGLE_KD = 0.0;
 
         // Digital (0-9, 10-25)
-        // 2019 bot
+        // TESTING BOT
         public static int LEFT_MOTOR_CHANNEL = 0, RIGHT_MOTOR_CHANNEL = 1;
         // 2022 bot
         //public static int LEFT_MOTOR_CHANNEL = 9, RIGHT_MOTOR_CHANNEL = 8;
@@ -71,11 +72,12 @@ public class RobotMap {
         public static Trigger aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton;
         public static Joystick analogLeft, analogRight;
         public static final int XBOX_PORT = 0;
-        public static final XboxController XController = new XboxController(XBOX_PORT);
+        public static final CommandXboxController XController = new CommandXboxController(XBOX_PORT);
 
 
         
-        public static final int PISTON_CHANNEL_FORWARD = 0, PISTON_CHANNEL_REVERSE = 1;
+        public static final int PISTON_CHANNEL = 0;
+        public static Solenoid piston = new Solenoid(PneumaticsModuleType.CTREPCM, PISTON_CHANNEL);
 
         // For example to map the left and right motors, you could define the
         // following variables to use with your drivetrain subsystem.
@@ -88,15 +90,15 @@ public class RobotMap {
         // public static int rangefinderModule = 1;
         public static void init() {
                 //map each button to a JoystickButton
-                aButton = new JoystickButton(XController, 1);
-                bButton = new JoystickButton(XController, 2);
-                xButton = new JoystickButton(XController, 3);
-                yButton = new JoystickButton(XController, 4);
-                leftBumper = new JoystickButton(XController, 5);
-                rightBumper = new JoystickButton(XController, 6);
-                backButton = new JoystickButton(XController, 7);
-                startButton = new JoystickButton(XController, 8);
-                leftStickButton = new JoystickButton(XController, 9);
+                aButton = XController.a();
+                bButton = XController.b();
+                xButton = XController.x();
+                yButton = XController.y();
+                leftBumper = XController.leftBumper();
+                rightBumper = XController.rightBumper();
+                backButton = XController.back();
+                startButton = XController.start();
+                leftStickButton = XController.leftStick();
                 //rightStickButton = new JoystickButton(XController, 10);
                 analogLeft = new Joystick(1);
                 // analogRight = new Joystick(2);

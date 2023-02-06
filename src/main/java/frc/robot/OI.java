@@ -22,10 +22,9 @@ public class OI {
     // TODO: remap the buttons to things
 
     // RobotMap.aButton.whenPressed(new turnToGoal());    
-    //RobotMap.aButton.onTrue(new ClampPiston(0));
     // RobotMap.bButton.whenPressed(new testCommand());
     // RobotMap.xButton.whenPressed(new dropShooter());
-    // RobotMap.yButton.whenPressed(new climb()); 
+    RobotMap.yButton.onTrue(new ClampPistonCommand(Robot.clampPiston));
     // RobotMap.startButton.whenPressed(new setLift(true));
     // RobotMap.backButton.whenPressed(new setLift(false));
     // RobotMap.leftBumper.whenPressed(new SequentialCommandGroup(new intakeCBT(2), new intakeDTF(30)));
