@@ -18,17 +18,21 @@ public class ArcadeMovement extends SubsystemBase{
         controller = RobotMap.XController;
     }
 
+
     public void periodic() {
-        
+        int counter = 1000;
         if (thrustConstant[0] > 0) {
             thrustConstant[1] = thrustConstant[0];
             thrustConstant[2] = thrustConstant[0];
         } else if (thrustConstant[0] == 0) {
-            thrustConstant[1] = controller.getLeftX();
-            thrustConstant[2] = controller.getLeftY(); 
+            thrustConstant[1] = controller.getLeftX() * (Math.min(4000, counter) / 4000);
+            thrustConstant[2] = controller.getLeftY() * (Math.min(4000, counter) / 4000); 
+
+
         }
 
         if(controller.getLeftY() >= 0) {
+            counter += 20;
             if(controller.getLeftX() >= 0) {
                 Robot.Drive.arcadeDrive(thrustConstant[1], (thrustConstant[0] > 0 ? -1 : 1) * thrustConstant[2]);
 
