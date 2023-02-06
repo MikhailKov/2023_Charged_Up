@@ -33,6 +33,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static ArcadeMovement arcade;
   public static ClampPiston clampPiston;
+  public static RobotArm robotArm;
   public Command m_autonomousCommand;
   public SendableChooser<Command> m_chooser;
   
@@ -52,6 +53,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     arcade = new ArcadeMovement();
     clampPiston = new ClampPiston();
+    robotArm = new RobotArm();
     // may use again later
     // m_chooser = new SendableChooser<Command>();
     // m_chooser.setDefaultOption("auto1", new ParallelCommandGroup(

@@ -44,20 +44,10 @@ public class RobotMap {
         public static int LEFT_MOTOR_CHANNEL = 0, RIGHT_MOTOR_CHANNEL = 1;
         // 2022 bot
         //public static int LEFT_MOTOR_CHANNEL = 9, RIGHT_MOTOR_CHANNEL = 8;
-
-        // motor based
-        //outlining spintake motors, placeholder channels
-        //public static int SPINTAKE_CHANNEL_L = 0;
-        //public static int SPINTAKE_CHANNEL_R = 6;
-
-        //public static int LEFT_SHOOTER_CHANNEL = 4;
-
-        //public static int RIGHT_SHOOTER_CHANNEL = 5;
-
-        //public static int SHOOTER_AIM_CHANNEL = 1;
         
-                        // enconder channels
-        // not final yet
+        // motor based
+        public static int ROBOT_ARM_MOTOR_ONE_CHANNEL = 2, ROBOT_ARM_MOTOR_TWO_CHANNEL = 3;
+
         public static int DRIVETRAIN_ENCODER_CHANNEL_L_A = 0, DRIVETRAIN_ENCODER_CHANNEL_L_B = 1, DRIVETRAIN_ENCODER_CHANNEL_R_A = 2, DRIVETRAIN_ENCODER_CHANNEL_R_B = 3;
         //public static int SHOOTER_ENCODER_CHANNEL_A = 0, SHOOTER_ENCODER_CHANNEL_B = 1;
 
@@ -69,12 +59,10 @@ public class RobotMap {
         //public static boolean liftStart = false;
 
         
-        public static Trigger aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton;
+        public static Trigger aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton, leftTrigger, rightTrigger;
         public static Joystick analogLeft, analogRight;
         public static final int XBOX_PORT = 0;
         public static final CommandXboxController XController = new CommandXboxController(XBOX_PORT);
-
-
         
         public static final int PISTON_CHANNEL = 0;
         public static Solenoid piston = new Solenoid(PneumaticsModuleType.CTREPCM, PISTON_CHANNEL);
@@ -96,6 +84,8 @@ public class RobotMap {
                 yButton = XController.y();
                 leftBumper = XController.leftBumper();
                 rightBumper = XController.rightBumper();
+                leftTrigger = XController.leftTrigger();
+                rightTrigger = XController.rightTrigger();
                 backButton = XController.back();
                 startButton = XController.start();
                 leftStickButton = XController.leftStick();

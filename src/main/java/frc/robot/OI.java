@@ -29,7 +29,8 @@ public class OI {
     // RobotMap.backButton.whenPressed(new setLift(false));
     // RobotMap.leftBumper.whenPressed(new SequentialCommandGroup(new intakeCBT(2), new intakeDTF(30)));
     // RobotMap.rightBumper.whenPressed(new intakeDTFSlow(25));
-    
+    RobotMap.leftTrigger.onTrue();
+    RobotMap.rightTrigger.onTrue();
     // RobotMap.leftStickButton.whenHeld(new movement(LEFT_STICK_PRESS));
     // RobotMap.rightStickButton.whenHeld(new movement(RIGHT_STICK_PRESS));
     //RobotMap.analogRight.get(new ArcadeMovement());
