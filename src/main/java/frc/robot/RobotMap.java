@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -63,8 +65,8 @@ public class RobotMap {
         public static Joystick analogLeft, analogRight;
         public static final int XBOX_PORT = 0;
         public static final CommandXboxController XController = new CommandXboxController(XBOX_PORT);
-        
-        public static final int PISTON_CHANNEL = 0;
+        // link to how pneumatics channels work here https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
+        public static final int PISTON_CHANNEL = 1;
         public static Solenoid piston = new Solenoid(PneumaticsModuleType.CTREPCM, PISTON_CHANNEL);
 
         // For example to map the left and right motors, you could define the

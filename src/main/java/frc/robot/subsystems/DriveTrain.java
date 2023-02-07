@@ -9,6 +9,7 @@ import java.lang.Math;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.Victor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.math.MathUtil;
@@ -27,7 +28,7 @@ public class DriveTrain extends SubsystemBase{
     public Encoder encoderL;
     public Encoder encoderR;
 
-    public XboxController driveStick;
+    public CommandXboxController driveStick;
 
     public DriveTrain() {
         lMotor = new Victor(RobotMap.LEFT_MOTOR_CHANNEL);
@@ -93,7 +94,7 @@ public class DriveTrain extends SubsystemBase{
     // unreverses the x and y vals
     public void arcadeDrive(double x, double y) {
         // robotDrive.arcadeDrive(-driveStick.getRightY(), driveStick.getRightX());
-        System.out.println(-1 * y + " + " + x);        
+        //System.out.println(-1 * y + " + " + x);        
         robotDrive.arcadeDrive(-y, -x);
     }
 }

@@ -1,9 +1,15 @@
+package frc.robot.commands;
+
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.RobotArm;
+
 public class RobotArmCommand extends CommandBase{
-    private final RobotArm robotArm = new RobotArm();
+    private RobotArm robotArm = new RobotArm();
     private boolean goUp;
     public RobotArmCommand(RobotArm robotArm, boolean goUp) {
         this.robotArm = robotArm;
         this.goUp = goUp;
+        //addRequirements(robotArm);
     }
 
     @Override
