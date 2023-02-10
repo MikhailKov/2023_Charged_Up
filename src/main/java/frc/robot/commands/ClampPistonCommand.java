@@ -8,12 +8,14 @@ public class ClampPistonCommand extends CommandBase {
 
     public ClampPistonCommand(ClampPiston piston) {
         this.piston = piston;
+        System.out.println("initialize clampPistonCommand");
         //addRequirements(piston);
     }
 
     @Override 
     public void initialize() {
         piston.toggleSolenoid();
+        System.out.println("attempt clampPistonCommand");
     }
 
     @Override 

@@ -6,8 +6,8 @@
 /*----------------------------------------------------------------------------*/
 package frc.robot;
 
-import edu.wpi.first.wpilibj.event.EventLoop;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+// import edu.wpi.first.wpilibj.event.EventLoop;
+// import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
 
 /**
@@ -19,12 +19,13 @@ public class OI {
     // private static final int LEFT_STICK_PRESS = 0, RIGHT_STICK_PRESS = 1;    
 
   public OI() {
-    // TODO: remap the buttons to things
+    // remap the buttons to things
 
     // RobotMap.aButton.whenPressed(new turnToGoal());    
     // RobotMap.bButton.whenPressed(new testCommand());
     // RobotMap.xButton.whenPressed(new dropShooter());
     RobotMap.yButton.onTrue(new ClampPistonCommand(Robot.clampPiston));
+    RobotMap.xButton.onTrue(new ClampPistonCommandTest());
     // RobotMap.startButton.whenPressed(new setLift(true));
     // RobotMap.backButton.whenPressed(new setLift(false));
     // RobotMap.leftBumper.whenPressed(new SequentialCommandGroup(new intakeCBT(2), new intakeDTF(30)));

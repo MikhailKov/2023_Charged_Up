@@ -36,7 +36,7 @@ public class ArcadeMovement extends SubsystemBase{
             thrustConstant[1] = thrustConstant[0];
             thrustConstant[2] = thrustConstant[0];
         } else if (thrustConstant[0] == 0) {
-            scalar = Math.min(4.0, timer.get()) / 4.0;
+            scalar = Math.min(10.0, timer.get()) / 10.0;
             thrustConstant[1] = controller.getLeftX() * scalar;
             thrustConstant[2] = controller.getLeftY() * scalar; 
             //System.out.println(timer.get() + " " + scalar);

@@ -7,14 +7,14 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+// import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+// import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.XboxController;
+// import edu.wpi.first.wpilibj.XboxController;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -67,7 +67,8 @@ public class RobotMap {
         public static final CommandXboxController XController = new CommandXboxController(XBOX_PORT);
         // link to how pneumatics channels work here https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
         public static final int PISTON_CHANNEL = 1;
-        public static Solenoid piston = new Solenoid(PneumaticsModuleType.CTREPCM, PISTON_CHANNEL);
+        public static Solenoid piston = new Solenoid(0, PneumaticsModuleType.CTREPCM, 3);
+        
 
         // For example to map the left and right motors, you could define the
         // following variables to use with your drivetrain subsystem.
@@ -93,6 +94,7 @@ public class RobotMap {
                 leftStickButton = XController.leftStick();
                 //rightStickButton = new JoystickButton(XController, 10);
                 analogLeft = new Joystick(1);
+                System.out.println(piston);
                 // analogRight = new Joystick(2);
         }
 }

@@ -5,19 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 package frc.robot;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
+// import edu.wpi.first.wpilibj.PneumaticsModuleType;
 //this is a test change
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+// import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+// import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
+import frc.robot.commands.ClampPistonCommandTest;
 //import java.lang.Math;
 //import frc.robot.OI; unused
-import frc.robot.commands.autonomous.*;
+// import frc.robot.commands.autonomous.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,6 +37,10 @@ public class Robot extends TimedRobot {
   public static RobotArm robotArm;
   public Command m_autonomousCommand;
   public SendableChooser<Command> m_chooser;
+
+
+  public static ClampPistonTest clampPistonTest;
+  public int writeOnce = 0;
   
 
   /**
@@ -45,6 +50,7 @@ public class Robot extends TimedRobot {
   
   @Override
   public void robotInit() {
+    System.out.println("initialized robotInit");
     //startCompetition();
     RobotMap.init();
     Drive = new DriveTrain();
@@ -54,6 +60,8 @@ public class Robot extends TimedRobot {
     arcade = new ArcadeMovement();
     clampPiston = new ClampPiston();
     robotArm = new RobotArm();
+
+    clampPistonTest = new ClampPistonTest();
     // may use again later
     // m_chooser = new SendableChooser<Command>();
     // m_chooser.setDefaultOption("auto1", new ParallelCommandGroup(
@@ -78,6 +86,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     arcade.periodic(); 
+    CommandScheduler.getInstance().run();
   }
 
   /**
@@ -153,6 +162,14 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // LiveWindow.setEnabled(false);
     //robotInit();
+    clampPistonTest = new ClampPistonTest();
+
+    RobotMap.xButton = RobotMap.XController.x();
+
+    RobotMap.XController.x().onTrue(new ClampPistonCommandTest());
+    RobotMap.XController.a().onTrue(new ClampPistonCommandTest());
+
+    System.out.println("***** CALLING TESTINIT *****");
   }
 
   /**
@@ -160,5 +177,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void testPeriodic() {
+    
+    if (writeOnce%5 == 0) {
+      System.out.println("***** CALLING TESTPERIODIC ****");
+    }
   }
 }

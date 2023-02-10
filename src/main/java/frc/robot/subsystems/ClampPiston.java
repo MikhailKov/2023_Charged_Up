@@ -8,6 +8,10 @@ import frc.robot.RobotMap;
 public class ClampPiston extends SubsystemBase {
 	private Solenoid piston = RobotMap.piston;
 
+    public ClampPiston() {
+        piston = RobotMap.piston;
+    }
+
     public void toggleSolenoid() {
         piston.toggle();
         System.out.println(getToggled());
