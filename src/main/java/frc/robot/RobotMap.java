@@ -9,11 +9,11 @@ package frc.robot;
 
 // import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.XboxController;
 // import edu.wpi.first.wpilibj.XboxController;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -64,10 +64,10 @@ public class RobotMap {
         public static Trigger aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton, leftTrigger, rightTrigger;
         public static Joystick analogLeft, analogRight;
         public static final int XBOX_PORT = 0;
-        public static final CommandXboxController XController = new CommandXboxController(XBOX_PORT);
+        public static final XboxController XController = new XboxController(XBOX_PORT);
         // link to how pneumatics channels work here https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
         public static final int PISTON_CHANNEL = 1;
-        public static Solenoid piston = new Solenoid(0, PneumaticsModuleType.CTREPCM, 3);
+        //public static Solenoid piston = new Solenoid(0, PneumaticsModuleType.CTREPCM, 3);
         
 
         // For example to map the left and right motors, you could define the
@@ -81,20 +81,18 @@ public class RobotMap {
         // public static int rangefinderModule = 1;
         public static void init() {
                 //map each button to a JoystickButton
-                aButton = XController.a();
-                bButton = XController.b();
-                xButton = XController.x();
-                yButton = XController.y();
-                leftBumper = XController.leftBumper();
-                rightBumper = XController.rightBumper();
-                leftTrigger = XController.leftTrigger();
-                rightTrigger = XController.rightTrigger();
-                backButton = XController.back();
-                startButton = XController.start();
-                leftStickButton = XController.leftStick();
+                aButton = new JoystickButton(XController, XboxController.Button.kA.value);
+                bButton = new JoystickButton(XController, XboxController.Button.kB.value);
+                xButton = new JoystickButton(XController, XboxController.Button.kX.value);
+                yButton = new JoystickButton(XController, XboxController.Button.kY.value);
+                leftBumper = new JoystickButton(XController, XboxController.Button.kLeftBumper.value);
+                rightBumper = new JoystickButton(XController, XboxController.Button.kRightBumper.value);
+                backButton = new JoystickButton(XController, XboxController.Button.kBack.value);
+                startButton = new JoystickButton(XController, XboxController.Button.kStart.value);
+                leftStickButton = new JoystickButton(XController, XboxController.Button.kLeftStick.value);
                 //rightStickButton = new JoystickButton(XController, 10);
                 analogLeft = new Joystick(1);
-                System.out.println(piston);
+
                 // analogRight = new Joystick(2);
         }
 }

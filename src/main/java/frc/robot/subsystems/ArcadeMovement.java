@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Timer;
@@ -14,7 +13,7 @@ public class ArcadeMovement extends SubsystemBase{
 
     // {thrust const, thrustX, thrustY}
     public static double[] thrustConstant = {0, 0, 0};
-    public CommandXboxController controller;
+    public XboxController controller;
     Timer timer = new Timer();
     double scalar;
 
@@ -26,19 +25,19 @@ public class ArcadeMovement extends SubsystemBase{
 
     public void periodic() {
         if(Math.abs( ( (int) (controller.getLeftX() * 20) )/20.0 ) == 0) {
-            if(Math.abs( ( (int) (controller.getLeftY() * 20) )/20.0 ) == 0)
+            /*if(Math.abs( ( (int) (controller.getLeftY() * 20) )/20.0 ) == 0)
             {
                 timer.reset();
                 return;
-            }
+            }*/
         }
         if (thrustConstant[0] > 0) {
             thrustConstant[1] = thrustConstant[0];
             thrustConstant[2] = thrustConstant[0];
         } else if (thrustConstant[0] == 0) {
-            scalar = Math.min(10.0, timer.get()) / 10.0;
-            thrustConstant[1] = controller.getLeftX() * scalar;
-            thrustConstant[2] = controller.getLeftY() * scalar; 
+            //scalar = Math.min(10.0, timer.get()) / 10.0;
+            thrustConstant[1] = controller.getLeftX();// * scalar;
+            thrustConstant[2] = controller.getLeftY();// * scalar; 
             //System.out.println(timer.get() + " " + scalar);
         }
 

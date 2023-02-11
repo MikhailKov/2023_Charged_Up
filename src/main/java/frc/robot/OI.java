@@ -24,8 +24,8 @@ public class OI {
     // RobotMap.aButton.whenPressed(new turnToGoal());    
     // RobotMap.bButton.whenPressed(new testCommand());
     // RobotMap.xButton.whenPressed(new dropShooter());
-    RobotMap.yButton.onTrue(new ClampPistonCommand(Robot.clampPiston));
-    RobotMap.xButton.onTrue(new ClampPistonCommandTest());
+    RobotMap.xButton.onTrue(new printMessage(Robot.m_piston));
+    // RobotMap.yButton.onTrue(Robot.clampPistonTest.toggleSolenoid());
     // RobotMap.startButton.whenPressed(new setLift(true));
     // RobotMap.backButton.whenPressed(new setLift(false));
     // RobotMap.leftBumper.whenPressed(new SequentialCommandGroup(new intakeCBT(2), new intakeDTF(30)));

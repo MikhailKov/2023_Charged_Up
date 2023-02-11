@@ -28,7 +28,7 @@ public class DriveTrain extends SubsystemBase{
     public Encoder encoderL;
     public Encoder encoderR;
 
-    public CommandXboxController driveStick;
+    public XboxController driveStick;
 
     public DriveTrain() {
         lMotor = new Victor(RobotMap.LEFT_MOTOR_CHANNEL);

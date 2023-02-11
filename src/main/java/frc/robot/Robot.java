@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
-import frc.robot.commands.ClampPistonCommandTest;
 //import java.lang.Math;
 //import frc.robot.OI; unused
 // import frc.robot.commands.autonomous.*;
@@ -32,14 +31,10 @@ public class Robot extends TimedRobot {
   public static DriveTrain Drive; // could be redundant , if we delete drivetrain get rid of this
   public static AprilTagVision Cameras; // used for helping line up bot thru apriltags use 16h5
   public static OI m_oi;
+  public static piston m_piston;
   public static ArcadeMovement arcade;
-  public static ClampPiston clampPiston;
-  public static RobotArm robotArm;
   public Command m_autonomousCommand;
   public SendableChooser<Command> m_chooser;
-
-
-  public static ClampPistonTest clampPistonTest;
   public int writeOnce = 0;
   
 
@@ -56,12 +51,12 @@ public class Robot extends TimedRobot {
     Drive = new DriveTrain();
     Cameras = new AprilTagVision();
     // Cameras = new Vision();
+    m_piston = new piston();
     m_oi = new OI();
     arcade = new ArcadeMovement();
-    clampPiston = new ClampPiston();
-    robotArm = new RobotArm();
+    
 
-    clampPistonTest = new ClampPistonTest();
+    //clampPistonTest = new ClampPistonTest(RobotMap.piston);
     // may use again later
     // m_chooser = new SendableChooser<Command>();
     // m_chooser.setDefaultOption("auto1", new ParallelCommandGroup(
@@ -162,14 +157,6 @@ public class Robot extends TimedRobot {
   public void testInit() {
     // LiveWindow.setEnabled(false);
     //robotInit();
-    clampPistonTest = new ClampPistonTest();
-
-    RobotMap.xButton = RobotMap.XController.x();
-
-    RobotMap.XController.x().onTrue(new ClampPistonCommandTest());
-    RobotMap.XController.a().onTrue(new ClampPistonCommandTest());
-
-    System.out.println("***** CALLING TESTINIT *****");
   }
 
   /**
@@ -178,8 +165,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
     
-    if (writeOnce%5 == 0) {
-      System.out.println("***** CALLING TESTPERIODIC ****");
-    }
   }
 }
