@@ -22,8 +22,7 @@ public class ArcadeMovement extends SubsystemBase{
         timer.start();
     }
 
-
-    public void periodic() {
+    public void drive() {
         if(Math.abs( ( (int) (controller.getLeftX() * 20) )/20.0 ) == 0) {
             /*if(Math.abs( ( (int) (controller.getLeftY() * 20) )/20.0 ) == 0)
             {

@@ -9,11 +9,14 @@ package frc.robot;
 
 // import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 // import edu.wpi.first.wpilibj.XboxController;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -35,39 +38,28 @@ public class RobotMap {
         // piston based
         public static int GRIPPER_CHANNEL_A = 0, GRIPPER_CHANNEL_B = 2;
 
-        // Drive system PID Parameters
-        public static final double DRIVE_PID_POSITION_KP = 2.00, // 2.00
-                        DRIVE_PID_POSITION_KI = 0.01, // 0.01
-                        DRIVE_PID_POSITION_KD = 1.00, // 1.00
-                        DRIVE_PID_ANGLE_KP = 0.02, DRIVE_PID_ANGLE_KI = 0.001, DRIVE_PID_ANGLE_KD = 0.0;
-
         // Digital (0-9, 10-25)
         // TESTING BOT
         public static int LEFT_MOTOR_CHANNEL = 0, RIGHT_MOTOR_CHANNEL = 1;
-        // 2022 bot
-        //public static int LEFT_MOTOR_CHANNEL = 9, RIGHT_MOTOR_CHANNEL = 8;
         
         // motor based
         public static int ROBOT_ARM_MOTOR_ONE_CHANNEL = 2, ROBOT_ARM_MOTOR_TWO_CHANNEL = 3;
+        public static int ROBOT_ARM_ENCODER_ONE_CHANNEL_A = 1000, ROBOT_ARM_ENCODER_ONE_CHANNEL_B = 1000, ROBOT_ARM_ENCODER_TWO_CHANNEL_A = 1000, ROBOT_ARM_ENCODER_TWO_CHANNEL_B = 1000;
 
         public static int DRIVETRAIN_ENCODER_CHANNEL_L_A = 0, DRIVETRAIN_ENCODER_CHANNEL_L_B = 1, DRIVETRAIN_ENCODER_CHANNEL_R_A = 2, DRIVETRAIN_ENCODER_CHANNEL_R_B = 3;
-        //public static int SHOOTER_ENCODER_CHANNEL_A = 0, SHOOTER_ENCODER_CHANNEL_B = 1;
 
-        // HARDWARE
-        
-        //public static MotorController lift;
+        public static int ROBOT_GRIP_MOTOR_CHANNEL = 4;
 
-        // state for lift motor
-        //public static boolean liftStart = false;
-
-        
-        public static Trigger aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton, leftTrigger, rightTrigger;
-        public static Joystick analogLeft, analogRight;
+        //Command Stuff
+        public static Trigger top, triggerJoystick, aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton, leftTrigger, rightTrigger;
+        public static CommandJoystick analogLeft, analogRight;
         public static final int XBOX_PORT = 0;
         public static final XboxController XController = new XboxController(XBOX_PORT);
+        
         // link to how pneumatics channels work here https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
+        //Piston Stuff
         public static final int PISTON_CHANNEL = 1;
-        //public static Solenoid piston = new Solenoid(0, PneumaticsModuleType.CTREPCM, 3);
+        public static Solenoid p = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
         
 
         // For example to map the left and right motors, you could define the
@@ -91,7 +83,9 @@ public class RobotMap {
                 startButton = new JoystickButton(XController, XboxController.Button.kStart.value);
                 leftStickButton = new JoystickButton(XController, XboxController.Button.kLeftStick.value);
                 //rightStickButton = new JoystickButton(XController, 10);
-                analogLeft = new Joystick(1);
+                analogLeft = new CommandJoystick(1);
+                top = analogLeft.top();
+                triggerJoystick = analogLeft.trigger();
 
                 // analogRight = new Joystick(2);
         }

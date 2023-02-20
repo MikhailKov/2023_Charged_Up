@@ -3,25 +3,26 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.piston;
 
-public class printMessage extends CommandBase {
-    private piston message;
+public class ClampPistonCommand extends CommandBase {
+    private piston p;
     private boolean done = false;
     
-    public printMessage(piston aPiston) {
-        this.message = aPiston;
-        addRequirements(message);
+    public ClampPistonCommand(piston aPiston) {
+        p = aPiston;
+        addRequirements(p);
     }
 
     @Override
     public void initialize() {
-        System.out.println("p");
-        done = true;
+        p.toggleSolenoid();
+        System.out.println("initialized ClampPistonCommand");
+       
     }
 
     @Override
     public void execute() {
-        System.out.println("p");
-        done = true;
+      
+        
     }
 
     @Override 
@@ -31,9 +32,9 @@ public class printMessage extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return done;
+        return true;
     }
 
     @Override
-    public boolean runsWhenDisabled() {return true;}
+    public boolean runsWhenDisabled() {return true;} 
 }

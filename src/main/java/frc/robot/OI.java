@@ -5,9 +5,6 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 package frc.robot;
-
-// import edu.wpi.first.wpilibj.event.EventLoop;
-// import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.*;
 
 /**
@@ -19,12 +16,17 @@ public class OI {
     // private static final int LEFT_STICK_PRESS = 0, RIGHT_STICK_PRESS = 1;    
 
   public OI() {
-    // remap the buttons to things
+    //RobotMap.xButton.onTrue(new printMessage(Robot.m_piston));
+    // RobotMap.top.onTrue(new ArcadeMovementCommand(Robot.arcade));
+    // RobotMap.triggerJoystick.onTrue(new ArcadeMovementCommand(Robot.arcade));
+    RobotMap.yButton.onTrue(new ClampPistonCommand(Robot.m_piston));
 
-    // RobotMap.aButton.whenPressed(new turnToGoal());    
-    // RobotMap.bButton.whenPressed(new testCommand());
-    // RobotMap.xButton.whenPressed(new dropShooter());
-    RobotMap.xButton.onTrue(new printMessage(Robot.m_piston));
+    RobotMap.rightTrigger.onTrue(new RobotArmCommand(Robot.arm, true));
+    RobotMap.leftTrigger.onTrue(new RobotArmCommand(Robot.arm, false));
+
+    RobotMap.rightBumper.onTrue(new GripCommand(Robot.grip, true));
+    RobotMap.leftBumper.onTrue(new GripCommand(Robot.grip, false));
+   
     // RobotMap.yButton.onTrue(Robot.clampPistonTest.toggleSolenoid());
     // RobotMap.startButton.whenPressed(new setLift(true));
     // RobotMap.backButton.whenPressed(new setLift(false));
