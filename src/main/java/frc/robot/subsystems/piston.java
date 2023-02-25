@@ -1,17 +1,16 @@
 package frc.robot.subsystems;
-
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class piston extends SubsystemBase {
-    private Solenoid message;
+    private Solenoid sole;
 
     public piston(Solenoid p) {
-        message = p;
+        sole = p;
     }
 
     public void toggleSolenoid() {
-        message.toggle();
+        sole.toggle();
         System.out.println("toggleSolenoid");
     }
 }

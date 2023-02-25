@@ -19,22 +19,6 @@ public class RobotArmCommand extends CommandBase {
         addRequirements(this.robotArm);
         e1.setDistancePerPulse(360./256.);
         e2.setDistancePerPulse(360./256.);
-
-        // if(goUp) {
-        //     if (state < 3) {
-        //         desiredState = state + 1;
-        //     } else {
-        //         desiredState = 3;
-        //     }
-        // } else {
-        //     if (state > 0) {
-        //         desiredState = state - 1;
-        //     } else {
-        //         state = 0;
-        //     }
-        // }
-
-
     }
 
     @Override

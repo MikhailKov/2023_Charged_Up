@@ -23,25 +23,27 @@ import frc.robot.commands.autonomous.*;
  */
 public class Robot extends TimedRobot {
   //Subsystems
-  public static DriveTrain Drive; // could be redundant , if we delete drivetrain get rid of this
-  public static AprilTagVision Cameras; // used for helping line up bot thru apriltags use 16h5
+  public static DriveTrain Drive; 
+  public static AprilTagVision Cameras; // use 16h5 for AprilTags
   public static piston m_piston;
   public static ArcadeMovement arcade;
   public static RobotArm arm;
   public static Grip grip;
   
+  //Autonomous Commands, Chooser
   private static Command m_autonomousOne;
   private static Command m_autonomousTwo;
   private static Command m_preloadScore;
   public Command m_autonomousCommand;
   public SendableChooser<Command> m_chooser;
 
+  //See OI.java
   public static OI m_oi;
   
 
   /**
    * This function is run when the robot is first started up and should be used
-   * for any initialization code.42
+   * for any initialization code.
    */
   
   @Override
@@ -93,9 +95,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     arcade.drive(); 
-    // System.out.println(RobotMap.gyro.getAngle());
     CommandScheduler.getInstance().run();
-
   }
 
   /**
@@ -104,8 +104,7 @@ public class Robot extends TimedRobot {
    * robot is disabled.
    */
   @Override
-  public void disabledInit() {
-  }
+  public void disabledInit() {}
 
   @Override
   public void disabledPeriodic() {
@@ -128,8 +127,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     System.out.println(SmartDashboard.getKeys());
-    m_autonomousCommand = m_chooser.getSelected();
 
+    m_autonomousCommand = m_chooser.getSelected();
     if(m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
       CommandScheduler.getInstance().run();
@@ -140,10 +139,8 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during autonomous.
    */
-  //comment
   @Override
-  public void autonomousPeriodic() {
-  }
+  public void autonomousPeriodic() {}
 
   @Override
   public void teleopInit() {
@@ -163,23 +160,16 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     CommandScheduler.getInstance().run();
-    //}
-    
   }
 
   @Override
   public void testInit() {
-    // LiveWindow.setEnabled(false);
-    //robotInit();
     CommandScheduler.getInstance().enable();
-
   }
 
   /**
    * This function is called periodically during test mode.
    */
   @Override
-  public void testPeriodic() {
-    
-  }
+  public void testPeriodic() {}
 }

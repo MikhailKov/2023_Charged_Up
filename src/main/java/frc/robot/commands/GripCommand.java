@@ -26,7 +26,6 @@ public class GripCommand extends CommandBase{
     @Override
     public boolean isFinished() {
         return true;
-        //FIX PLS
     }
 
     @Override

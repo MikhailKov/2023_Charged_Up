@@ -7,11 +7,9 @@
 
 package frc.robot;
 
-// import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-// import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -19,7 +17,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-// import edu.wpi.first.wpilibj.XboxController;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -41,16 +38,14 @@ public class RobotMap {
         public static int GRIPPER_CHANNEL_A = 0, GRIPPER_CHANNEL_B = 2;
 
         // Digital (0-9, 10-25)
-        // TESTING BOT
+        // Motor Channels (For Testing Bot: L = 0, R = 1)
         public static int LEFT_MOTOR_CHANNEL = 0, RIGHT_MOTOR_CHANNEL = 1;
-        
-        // motor based
         public static int ROBOT_ARM_MOTOR_ONE_CHANNEL = 2, ROBOT_ARM_MOTOR_TWO_CHANNEL = 3;
-        public static int ROBOT_ARM_ENCODER_ONE_CHANNEL_A = 4, ROBOT_ARM_ENCODER_ONE_CHANNEL_B = 5, ROBOT_ARM_ENCODER_TWO_CHANNEL_A = 6, ROBOT_ARM_ENCODER_TWO_CHANNEL_B = 7;
-
-        public static int DRIVETRAIN_ENCODER_CHANNEL_L_A = 0, DRIVETRAIN_ENCODER_CHANNEL_L_B = 1, DRIVETRAIN_ENCODER_CHANNEL_R_A = 2, DRIVETRAIN_ENCODER_CHANNEL_R_B = 3;
-
         public static int ROBOT_GRIP_MOTOR_CHANNEL = 4;
+
+        //Encoder Channels
+        public static int ROBOT_ARM_ENCODER_ONE_CHANNEL_A = 4, ROBOT_ARM_ENCODER_ONE_CHANNEL_B = 5, ROBOT_ARM_ENCODER_TWO_CHANNEL_A = 6, ROBOT_ARM_ENCODER_TWO_CHANNEL_B = 7;
+        public static int DRIVETRAIN_ENCODER_CHANNEL_L_A = 0, DRIVETRAIN_ENCODER_CHANNEL_L_B = 1, DRIVETRAIN_ENCODER_CHANNEL_R_A = 2, DRIVETRAIN_ENCODER_CHANNEL_R_B = 3;
 
         //Command Stuff
         public static Trigger top, triggerJoystick, aButton, bButton, xButton, yButton, backButton, startButton, leftBumper, rightBumper, leftStickButton, rightStickButton, leftTrigger, rightTrigger;
@@ -63,22 +58,13 @@ public class RobotMap {
         public static final int PISTON_CHANNEL = 1;
         public static Solenoid p = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
         
+        //Gyroscope Stuff
         public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
 
         //ultrasonic sensors - 195 inches probably
         // public static AnalogPotentiometer frontUltrasonic = new AnalogPotentiometer(0, 195, 0);
         // public static AnalogPotentiometer backUltrasonic = new AnalogPotentiometer(0, 195, 0);
 
-
-        // For example to map the left and right motors, you could define the
-        // following variables to use with your drivetrain subsystem.
-        // public static int leftMotor = 1;
-        // public static int rightMotor = 2;
-
-        // If you are using multiple modules, make sure to define both the port
-        // number and the module. For example you with a rangefinder:
-        // public static int rangefinderPort = 1;
-        // public static int rangefinderModule = 1;
         public static void init() {
                 //map each button to a JoystickButton
                 aButton = new JoystickButton(XController, XboxController.Button.kA.value);
@@ -92,8 +78,5 @@ public class RobotMap {
                 leftStickButton = new JoystickButton(XController, XboxController.Button.kLeftStick.value);
                 //rightStickButton = new JoystickButton(XController, 10);
                 analogLeft = new CommandJoystick(1);
-
-
-                // analogRight = new Joystick(2);
         }
 }

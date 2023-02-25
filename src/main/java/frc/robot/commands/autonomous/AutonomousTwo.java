@@ -19,7 +19,6 @@ public class AutonomousTwo extends CommandBase {
         addRequirements(Robot.Drive);
         encoderL = Robot.Drive.encoderL;
         encoderR = Robot.Drive.encoderR;
-        //fix later
         gyro = RobotMap.gyro;
     }
 
@@ -29,8 +28,6 @@ public class AutonomousTwo extends CommandBase {
         time = new Timer();
         gyro.reset();
         gyro.calibrate();
-        //calibrates while movingaround; this might be an issue...
-
     }
 
     @Override
@@ -42,15 +39,14 @@ public class AutonomousTwo extends CommandBase {
 
         double angle = gyro.getAngle();
         leftCommunity = true;
-        // if (encoderL.getDistance() >= 10)
-        //     leftCommunity = true;
-        // else if (encoderL.getDistance() < 10 && !leftCommunity)
-        //     Robot.Drive.arcadeDrive(0, -.5);
-        if (leftCommunity && angle <= -1)
+        if (encoderL.getDistance() >= 10)
+            leftCommunity = true;
+        else if (encoderL.getDistance() < 10 && !leftCommunity)
+            Robot.Drive.arcadeDrive(0, -.5);
+        else if (leftCommunity && angle <= -1)
             Robot.Drive.arcadeDrive(0, .5);
         else if (leftCommunity && angle >= 1)
             Robot.Drive.arcadeDrive (0, -.5);
-        System.out.println(angle);
     }
 
     @Override

@@ -4,22 +4,6 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 public class AutonomousOne extends CommandBase {
-    //after preload
-    //possible turn
-    //drive forward
-    //extend arm
-    //open gripper
-    //drive forward?
-    //close gripper
-    //turn around
-    //go back
-    //line up with the thing
-    //go forward
-    //extend arm
-    //go forward????
-    //open gripper
-    //go back to neutral position idk
-    
     static Timer time;
 
     public AutonomousOne() {

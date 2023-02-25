@@ -5,7 +5,6 @@ import frc.robot.subsystems.piston;
 
 public class ClampPistonCommand extends CommandBase {
     private piston p;
-    private boolean done = false;
     
     public ClampPistonCommand(piston aPiston) {
         p = aPiston;
@@ -20,10 +19,7 @@ public class ClampPistonCommand extends CommandBase {
     }
 
     @Override
-    public void execute() {
-      
-        
-    }
+    public void execute() {}
 
     @Override 
     public void end(boolean interrupted) {

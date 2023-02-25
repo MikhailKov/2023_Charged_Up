@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArcadeMovement;
 
 public class SpeedUp extends CommandBase{
-    //0: 1, 1: .65, 2: .45
+    //(State: Factor) 0: 1, 1: .65, 2: .45
     private boolean slowDown;
 
     public SpeedUp(boolean slowDown)
