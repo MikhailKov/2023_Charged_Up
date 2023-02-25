@@ -19,11 +19,12 @@ public class OI {
     //RobotMap.xButton.onTrue(new printMessage(Robot.m_piston));
     // RobotMap.top.onTrue(new ArcadeMovementCommand(Robot.arcade));
     // RobotMap.triggerJoystick.onTrue(new ArcadeMovementCommand(Robot.arcade));
-    RobotMap.yButton.onTrue(new ClampPistonCommand(Robot.m_piston));
+    RobotMap.leftStickButton.onTrue(new ClampPistonCommand(Robot.m_piston));
 
-    RobotMap.rightTrigger.onTrue(new RobotArmCommand(Robot.arm, true));
-    RobotMap.leftTrigger.onTrue(new RobotArmCommand(Robot.arm, false));
-
+    RobotMap.bButton.onTrue(new RobotArmCommand(Robot.arm, true));
+    RobotMap.xButton.onTrue(new RobotArmCommand(Robot.arm, false));
+    RobotMap.yButton.onTrue(new SpeedUp(false));
+    RobotMap.aButton.onTrue(new SpeedUp(true));
     RobotMap.rightBumper.onTrue(new GripCommand(Robot.grip, true));
     RobotMap.leftBumper.onTrue(new GripCommand(Robot.grip, false));
    

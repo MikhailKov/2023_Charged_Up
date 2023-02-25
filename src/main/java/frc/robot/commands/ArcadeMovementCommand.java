@@ -6,7 +6,6 @@ import frc.robot.Robot;
 
 public class ArcadeMovementCommand extends CommandBase {
     private ArcadeMovement move;
-
     public ArcadeMovementCommand (ArcadeMovement move) {
         this.move = move;
         addRequirements(this.move);

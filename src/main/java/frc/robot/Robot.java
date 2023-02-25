@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
 import frc.robot.commands.*;
+import frc.robot.commands.autonomous.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,9 +30,12 @@ public class Robot extends TimedRobot {
   public static RobotArm arm;
   public static Grip grip;
   
+  private static Command m_autonomousOne;
+  private static Command m_autonomousTwo;
+  private static Command m_preloadScore;
   public Command m_autonomousCommand;
   public SendableChooser<Command> m_chooser;
-  public int writeOnce = 0;
+
   public static OI m_oi;
   
 
@@ -44,7 +48,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     System.out.println("initialized robotInit");
     //startCompetition();
+
     RobotMap.init();
+
+    //Initialize Subsystems
     Drive = new DriveTrain();
     Cameras = new AprilTagVision();
     m_piston = new piston(RobotMap.p);
@@ -52,10 +59,25 @@ public class Robot extends TimedRobot {
     arm = new RobotArm(RobotMap.ROBOT_ARM_MOTOR_ONE_CHANNEL, RobotMap.ROBOT_ARM_MOTOR_TWO_CHANNEL, .5);
     grip = new Grip(RobotMap.ROBOT_GRIP_MOTOR_CHANNEL, .5);
 
+    //Intialize Autonomous Commands
+    m_autonomousOne = new AutonomousOne();
+    m_autonomousTwo = new AutonomousTwo();
+    m_preloadScore = new PreloadScore();
+
+    //Initialize OI
     m_oi = new OI();
 
-    CommandScheduler.getInstance().onCommandInitialize(printMessage -> System.out.println("scheduled command"));
-    CommandScheduler.getInstance().onCommandInitialize(ClampPistonCommand -> System.out.println("scheduled piston"));
+    //Calibrate Gyroscope
+    RobotMap.gyro.calibrate();
+    
+    //Autonomous Options
+    m_chooser = new SendableChooser<Command>();
+    m_chooser.setDefaultOption("Autonomous 2 (Default) (12 points)", m_autonomousTwo);
+    m_chooser.addOption("Autonomous 1 (3 points?)", m_autonomousOne);
+    m_chooser.addOption("Preload Score (6 points)", m_preloadScore);
+
+    //Add chooser to smart dashboard
+    SmartDashboard.putData(m_chooser);
 
   }
 
@@ -71,17 +93,9 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     arcade.drive(); 
+    // System.out.println(RobotMap.gyro.getAngle());
     CommandScheduler.getInstance().run();
-    // if (RobotMap.XController.getXButton()) {
-    //   // System.out.println("Robot - got X button");
-    //   CommandScheduler.getInstance().schedule(new printMessage(m_piston));
-    //   // CommandScheduler.getInstance
-    // }
-    // if (RobotMap.XController.getYButton()) {
-    //   // System.out.println("Robot - got X button");
-    //   CommandScheduler.getInstance().schedule(new ClampPistonCommand(m_piston));
-    //   // CommandScheduler.getInstance
-    // }
+
   }
 
   /**
@@ -115,6 +129,11 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     System.out.println(SmartDashboard.getKeys());
     m_autonomousCommand = m_chooser.getSelected();
+
+    if(m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+      CommandScheduler.getInstance().run();
+    }
     
   }
 
@@ -124,11 +143,6 @@ public class Robot extends TimedRobot {
   //comment
   @Override
   public void autonomousPeriodic() {
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
-    CommandScheduler.getInstance().run();
-    m_autonomousCommand = null;
   }
 
   @Override
@@ -138,9 +152,9 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     // SmartDashboard.putData("Encoder", m_chooser);
-    // if (m_autonomousCommand != null) {
-    //   m_autonomousCommand.cancel();
-    // }
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.cancel();
+    }
   }
 
   /**

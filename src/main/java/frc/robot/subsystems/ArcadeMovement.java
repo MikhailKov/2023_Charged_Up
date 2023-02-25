@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.Timer;
 
 public class ArcadeMovement extends SubsystemBase{
 
@@ -14,30 +13,20 @@ public class ArcadeMovement extends SubsystemBase{
     // {thrust const, thrustX, thrustY}
     public static double[] thrustConstant = {0, 0, 0};
     public XboxController controller;
-    Timer timer = new Timer();
-    double scalar;
+    public static double scalar = 1;
+    public static int state = 0;
 
     public ArcadeMovement() {
         controller = RobotMap.XController;
-        timer.start();
     }
 
     public void drive() {
-        if(Math.abs( ( (int) (controller.getLeftX() * 20) )/20.0 ) == 0) {
-            /*if(Math.abs( ( (int) (controller.getLeftY() * 20) )/20.0 ) == 0)
-            {
-                timer.reset();
-                return;
-            }*/
-        }
         if (thrustConstant[0] > 0) {
             thrustConstant[1] = thrustConstant[0];
             thrustConstant[2] = thrustConstant[0];
-        } else if (thrustConstant[0] == 0) {
-            //scalar = Math.min(10.0, timer.get()) / 10.0;
-            thrustConstant[1] = controller.getLeftX();// * scalar;
-            thrustConstant[2] = controller.getLeftY();// * scalar; 
-            //System.out.println(timer.get() + " " + scalar);
+        } else if (thrustConstant[0] == 0) {       
+            thrustConstant[1] = controller.getLeftX() * scalar;
+            thrustConstant[2] = controller.getLeftY() * scalar; 
         }
 
         if(controller.getLeftY() >= 0) {

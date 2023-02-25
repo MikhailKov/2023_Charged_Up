@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 // import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -44,7 +46,7 @@ public class RobotMap {
         
         // motor based
         public static int ROBOT_ARM_MOTOR_ONE_CHANNEL = 2, ROBOT_ARM_MOTOR_TWO_CHANNEL = 3;
-        public static int ROBOT_ARM_ENCODER_ONE_CHANNEL_A = 1000, ROBOT_ARM_ENCODER_ONE_CHANNEL_B = 1000, ROBOT_ARM_ENCODER_TWO_CHANNEL_A = 1000, ROBOT_ARM_ENCODER_TWO_CHANNEL_B = 1000;
+        public static int ROBOT_ARM_ENCODER_ONE_CHANNEL_A = 4, ROBOT_ARM_ENCODER_ONE_CHANNEL_B = 5, ROBOT_ARM_ENCODER_TWO_CHANNEL_A = 6, ROBOT_ARM_ENCODER_TWO_CHANNEL_B = 7;
 
         public static int DRIVETRAIN_ENCODER_CHANNEL_L_A = 0, DRIVETRAIN_ENCODER_CHANNEL_L_B = 1, DRIVETRAIN_ENCODER_CHANNEL_R_A = 2, DRIVETRAIN_ENCODER_CHANNEL_R_B = 3;
 
@@ -61,6 +63,12 @@ public class RobotMap {
         public static final int PISTON_CHANNEL = 1;
         public static Solenoid p = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
         
+        public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();
+
+        //ultrasonic sensors - 195 inches probably
+        // public static AnalogPotentiometer frontUltrasonic = new AnalogPotentiometer(0, 195, 0);
+        // public static AnalogPotentiometer backUltrasonic = new AnalogPotentiometer(0, 195, 0);
+
 
         // For example to map the left and right motors, you could define the
         // following variables to use with your drivetrain subsystem.
@@ -84,8 +92,7 @@ public class RobotMap {
                 leftStickButton = new JoystickButton(XController, XboxController.Button.kLeftStick.value);
                 //rightStickButton = new JoystickButton(XController, 10);
                 analogLeft = new CommandJoystick(1);
-                top = analogLeft.top();
-                triggerJoystick = analogLeft.trigger();
+
 
                 // analogRight = new Joystick(2);
         }

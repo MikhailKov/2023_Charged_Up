@@ -38,8 +38,8 @@ public class DriveTrain extends SubsystemBase{
         robotDrive.setSafetyEnabled(false); //??????????????
         encoderL = new Encoder(RobotMap.DRIVETRAIN_ENCODER_CHANNEL_L_A, RobotMap.DRIVETRAIN_ENCODER_CHANNEL_L_B);
         encoderR = new Encoder(RobotMap.DRIVETRAIN_ENCODER_CHANNEL_R_A, RobotMap.DRIVETRAIN_ENCODER_CHANNEL_R_B, true);
-        encoderL.setDistancePerPulse(1./256.); //need to do tests to see how far it moves in 256 pulses, depends on speed tho
-        encoderR.setDistancePerPulse(1./256.);
+        encoderL.setDistancePerPulse(18.859/256.); //need to do tests to see how far it moves in 256 pulses, depends on speed tho
+        encoderR.setDistancePerPulse(18.859/256.);
 
         driveStick = RobotMap.XController;
         //use encoders this year --> gives input from the motor, can help control speed
