@@ -60,7 +60,7 @@ public class AprilTagVision extends SubsystemBase {
    
     
     public GenericPublisher aprilTagInfo;
-    private boolean debug = false;
+    private boolean debug = true;
 
     public AprilTagVision(){
         super();
@@ -78,7 +78,7 @@ public class AprilTagVision extends SubsystemBase {
         
         // apriltag stuff, see https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/apriltag/AprilTagDetector.html
         detector.addFamily("tag16h5");
-        detector.setConfig(config);
+        // detector.setConfig(config);
         
         // run on new thread
         Thread vThread = new Thread(() -> tagDetection());
@@ -105,32 +105,10 @@ public class AprilTagVision extends SubsystemBase {
         return false;
     }
 
-    // public static double[] quatToEuler(Quaternion quat) {
-    //     QuaternionWrapper wrapper = new QuaternionWrapper(quat);
-    //     double w = wrapper.getW();
-    //     Vector<N3> v = wrapper.getV();
-    //     double x = v.get(0, 0);
-    //     double y = v.get(1, 0);
-    //     double z = v.get(2, 0);
-    //     double ysqr = y * y;
-    
-    //     double roll = Math.atan2(2 * (w * x + y * z), 1 - 2 * (x * x + ysqr));
-    //     double pitch = Math.asin(2 * (w * y - z * x));
-    //     double yaw = Math.atan2(2 * (w * z + x * y), 1 - 2 * (ysqr + z * z));
-    
-    //     return new double[] { roll, pitch, yaw };
-    // }
-
-    // private Point rotatePoint(double x, double y, double angle) {
-    //     double x_new = x * Math.cos(angle) - y * Math.sin(angle);
-    //     double y_new = x * Math.sin(angle) + y * Math.cos(angle);
-    //     return new Point(x_new, y_new);
-    // }
-
     void tagDetection() {
         
         // setup camera & video
-        UsbCamera camera = CameraServer.startAutomaticCapture();
+        UsbCamera camera = CameraServer.startAutomaticCapture( );
         camera.setResolution(RobotMap.CAM_WID, RobotMap.CAM_HEI);
 
         cvSink = CameraServer.getVideo();
@@ -161,27 +139,16 @@ public class AprilTagVision extends SubsystemBase {
             AprilTagDetection[] rawdetections = detector.detect(grayMat);
             ArrayList<AprilTagDetection> detections = new ArrayList<AprilTagDetection>();
             Collections.addAll(detections, rawdetections);
-           
-            clearCounter++;
-            if(clearCounter >= clearThreshold)
-            {
-                tags.clear();
-            }
-                
-           if(Collections.frequency(tags, 1) > 10) 
-           {
-                System.out.print("red community 1");
-                tags.clear();
-           }
+            System.out.println("Detections: " + detections + " " + detections.size());
+            System.out.println("Raw Detections: " + rawdetections.length);
             // check if detected, otherwise do nothin
             if (detections.size() != 0) {
-                
-                
+                System.out.println("bruh ting activation !!!! ");
                 for (AprilTagDetection detection : detections) {
 
                     //kept at zero to make sure it's able to detect non frc apriltags
-                    if(!(detection.getId() < 0 || detection.getId() > 8) && isSquare(detection) && detection.getHamming() < 1) {
-                        
+                    if(!(detection.getId() < 0 || detection.getId() > 8) && detection.getHamming() < 1) {
+                        System.out.println("YO APRTIL TAG DETECTION");
                         tags.add(detection.getId());
                     
                         if(debug) {System.out.println("found id " + detection.getId());}

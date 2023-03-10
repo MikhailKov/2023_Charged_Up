@@ -8,16 +8,20 @@ package frc.robot;
 // import edu.wpi.first.wpilibj.PneumaticsModuleType;
 //this is a test change
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 // import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 // import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
+<<<<<<< Updated upstream
 //import java.lang.Math;
 //import frc.robot.OI; unused
 // import frc.robot.commands.autonomous.*;
+=======
+import frc.robot.commands.autonomous.*;
+>>>>>>> Stashed changes
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,9 +37,25 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static piston m_piston;
   public static ArcadeMovement arcade;
+<<<<<<< Updated upstream
   public Command m_autonomousCommand;
   public SendableChooser<Command> m_chooser;
   public int writeOnce = 0;
+=======
+  public static RobotArm arm;
+  public static Grip grip;
+  
+  //Autonomous Commands, Chooser
+  private static String kCharge = "Charge";
+  private static String kScore = "Score";
+  public String kAutonomousChoice;
+  public SendableChooser<String> m_chooser;
+
+  public static Timer time;
+
+  //See OI.java
+  public static OI m_oi;
+>>>>>>> Stashed changes
   
 
   /**
@@ -50,11 +70,21 @@ public class Robot extends TimedRobot {
     RobotMap.init();
     Drive = new DriveTrain();
     Cameras = new AprilTagVision();
+<<<<<<< Updated upstream
     // Cameras = new Vision();
     m_piston = new piston();
+=======
+    m_piston = new piston(RobotMap.p);
+    arcade = new ArcadeMovement();
+    arm = new RobotArm(RobotMap.ROBOT_ARM_MOTOR_ONE_CHANNEL, RobotMap.ROBOT_ARM_MOTOR_TWO_CHANNEL, .5);
+    grip = new Grip(RobotMap.ROBOT_GRIP_MOTOR_CHANNEL, .5);
+
+    //Initialize OI
+>>>>>>> Stashed changes
     m_oi = new OI();
     arcade = new ArcadeMovement();
     
+<<<<<<< Updated upstream
 
     //clampPistonTest = new ClampPistonTest(RobotMap.piston);
     // may use again later
@@ -67,6 +97,17 @@ public class Robot extends TimedRobot {
     // m_chooser.addOption("breakStartLine", new breakStartLine());
     // m_chooser.addOption("auto2", new auto2());
     // SmartDashboard.putData("Auto mode", m_chooser);
+=======
+    //Autonomous Options
+    m_chooser = new SendableChooser<String>();
+    m_chooser.setDefaultOption("Score --> Outside --> Charging Station", kCharge);
+    m_chooser.addOption("Score --> reload --> score", kScore);
+
+    //Add chooser to smart dashboard
+    SmartDashboard.putData(m_chooser);
+
+    time = new Timer();
+>>>>>>> Stashed changes
   }
 
   /**
@@ -114,7 +155,19 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     System.out.println(SmartDashboard.getKeys());
+<<<<<<< Updated upstream
     m_autonomousCommand = m_chooser.getSelected();
+=======
+
+    kAutonomousChoice = m_chooser.getSelected();
+    if(kAutonomousChoice.equals(kCharge)) {
+      //CommandScheduler.getInstance().schedule((new PreloadScore()).andThen(new AutonomousTwo()));
+      CommandScheduler.getInstance().schedule(new AutonomousTwo());
+    }
+    else {
+      CommandScheduler.getInstance().schedule((new PreloadScore()).andThen(new AutonomousOne()).andThen(new PreloadScore()));
+    }
+>>>>>>> Stashed changes
     
   }
 
@@ -137,10 +190,15 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+<<<<<<< Updated upstream
     SmartDashboard.putData("Encoder", m_chooser);
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+=======
+    // SmartDashboard.putData("Encoder", m_chooser);
+    CommandScheduler.getInstance().cancel();
+>>>>>>> Stashed changes
   }
 
   /**

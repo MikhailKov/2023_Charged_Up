@@ -70,6 +70,7 @@ public class RobotMap {
         //public static Solenoid piston = new Solenoid(0, PneumaticsModuleType.CTREPCM, 3);
         
 
+<<<<<<< Updated upstream
         // For example to map the left and right motors, you could define the
         // following variables to use with your drivetrain subsystem.
         // public static int leftMotor = 1;
@@ -79,6 +80,11 @@ public class RobotMap {
         // number and the module. For example you with a rangefinder:
         // public static int rangefinderPort = 1;
         // public static int rangefinderModule = 1;
+=======
+        //ultrasonic sensors - 195 inches probably
+        public static AnalogPotentiometer frontUltrasonic = new AnalogPotentiometer(0, 195, 0);
+        
+>>>>>>> Stashed changes
         public static void init() {
                 //map each button to a JoystickButton
                 aButton = new JoystickButton(XController, XboxController.Button.kA.value);
