@@ -1,30 +1,47 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.motorcontrol.Victor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
 public class RobotArm extends SubsystemBase{
-    public Victor m1, m2;
+    public Victor armMotor;
     public double speed;
+    public boolean pistonState = false;
+    public DoubleSolenoid armPiston;
 
-    public RobotArm(int channelOne, int channelTwo, double speed) {
-        m1 = new Victor(channelOne);
-        m2 = new Victor(channelTwo);
+    public RobotArm(int channel, double speed) {
+        armMotor = new Victor(channel);
         this.speed = speed;
+        armPiston = RobotMap.armPiston;
     }
 
     public void up() {
-        m1.set(speed);
-        m2.set(-1 * speed);
+        armMotor.set(0);
+        //armMotor.set(speed);
+        if (!pistonState){
+            armPiston.set(Value.kForward);
+            pistonState = !pistonState;
+        }
     }
 
     public void down() {
-        m1.set(-1 * speed);
-        m2.set(speed);
+        armMotor.set(0);
+        //armMotor.set(-speed);
+        if (pistonState){
+            armPiston.set(Value.kReverse);
+            pistonState = !pistonState;
+        }
     }
 
     public void stop() {
-        m1.set(0);
-        m2.set(0);
+        armMotor.stopMotor();
+        if (!pistonState){
+            armPiston.set(Value.kForward);
+            pistonState = !pistonState;
+        }
     }
 }

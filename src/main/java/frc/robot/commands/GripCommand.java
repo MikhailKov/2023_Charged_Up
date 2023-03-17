@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.Grip;
 
 public class GripCommand extends CommandBase{
@@ -15,17 +16,19 @@ public class GripCommand extends CommandBase{
     }
 
     @Override
-    public void initialize() {}
-
-    @Override
-    public void execute() {
+    public void initialize() {
         if(open) grip.open();
         else grip.close();
     }
 
     @Override
+    public void execute() {
+        
+    }
+
+    @Override
     public boolean isFinished() {
-        return true;
+        return (open && !RobotMap.XController.getRightBumper()) || (!open && !RobotMap.XController.getLeftBumper());
     }
 
     @Override

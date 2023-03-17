@@ -15,8 +15,7 @@ public class OI {
   public OI() {
     RobotMap.backButton.onTrue(new ClampPistonCommand(Robot.m_piston));
 
-    RobotMap.bButton.onTrue(new RobotArmCommand(Robot.arm, true));
-    RobotMap.xButton.onTrue(new RobotArmCommand(Robot.arm, false));
+    RobotMap.xButton.whileTrue(new RobotArmManualCommand(Robot.arm));
 
     RobotMap.yButton.onTrue(new SpeedUp(false));
     RobotMap.aButton.onTrue(new SpeedUp(true));

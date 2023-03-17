@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
-import frc.robot.commands.*;
 import frc.robot.commands.autonomous.*;
 
 /**
@@ -58,8 +57,8 @@ public class Robot extends TimedRobot {
     Cameras = new AprilTagVision();
     m_piston = new piston(RobotMap.p);
     arcade = new ArcadeMovement();
-    arm = new RobotArm(RobotMap.ROBOT_ARM_MOTOR_ONE_CHANNEL, RobotMap.ROBOT_ARM_MOTOR_TWO_CHANNEL, .5);
-    grip = new Grip(RobotMap.ROBOT_GRIP_MOTOR_CHANNEL, .5);
+    arm = new RobotArm(RobotMap.ROBOT_ARM_MOTOR_CHANNEL, 1);
+    grip = new Grip(RobotMap.ROBOT_GRIP_MOTOR_CHANNEL, 1);
 
     //Intialize Autonomous Commands
     m_autonomousOne = new AutonomousOne();

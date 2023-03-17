@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -38,9 +39,9 @@ public class RobotMap {
         public static int GRIPPER_CHANNEL_A = 0, GRIPPER_CHANNEL_B = 2;
 
         // Digital (0-9, 10-25)
-        // Motor Channels (For Testing Bot: L = 0, R = 1)
-        public static int LEFT_MOTOR_CHANNEL = 0, RIGHT_MOTOR_CHANNEL = 1;
-        public static int ROBOT_ARM_MOTOR_ONE_CHANNEL = 2, ROBOT_ARM_MOTOR_TWO_CHANNEL = 3;
+        // Motor Channels 2023
+        public static int LEFT_MOTOR_CHANNEL = 1, RIGHT_MOTOR_CHANNEL = 0;
+        public static int ROBOT_ARM_MOTOR_CHANNEL = 2;
         public static int ROBOT_GRIP_MOTOR_CHANNEL = 4;
 
         //Encoder Channels
@@ -55,8 +56,11 @@ public class RobotMap {
         
         // link to how pneumatics channels work here https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
         //Piston Stuff
-        public static final int PISTON_CHANNEL = 1;
-        public static Solenoid p = new Solenoid(0, PneumaticsModuleType.CTREPCM, 1);
+        public static final int PISTON_CHANNEL = 2;
+        public static Solenoid p = new Solenoid(0, PneumaticsModuleType.CTREPCM, PISTON_CHANNEL);
+        public static final int ARM_PISTON_CHANNEL_ONE = 1, ARM_PISTON_CHANNEL_TWO = 0;
+        public static DoubleSolenoid armPiston = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, ARM_PISTON_CHANNEL_ONE, ARM_PISTON_CHANNEL_TWO);
+
         
         //Gyroscope Stuff
         public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();

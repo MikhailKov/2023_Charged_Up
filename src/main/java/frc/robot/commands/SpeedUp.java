@@ -1,5 +1,8 @@
+//Works on 2023 Bot
+
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ArcadeMovement;
 
@@ -51,5 +54,9 @@ public class SpeedUp extends CommandBase{
     }
 
     @Override
-    public void end(boolean interrupted) {}
+    public void end(boolean interrupted) {
+
+    }
+
+    
 }

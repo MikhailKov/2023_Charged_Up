@@ -85,6 +85,10 @@ public class PreloadScore extends CommandBase{
         Robot.Drive.arcadeDrive(0, 0);
         if (scoredPoint) {
             //turn around
+            if(!time.hasElapsed(15))
+            {
+                Robot.Drive.arcadeDrive(-.5,.5);
+            }
         }
     }
 

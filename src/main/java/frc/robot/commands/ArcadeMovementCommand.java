@@ -17,7 +17,7 @@ public class ArcadeMovementCommand extends CommandBase {
     @Override
     public void execute() {
         move.drive();
-        System.out.println("hi");
+       // System.out.println("hi");
     }
 
     @Override 
