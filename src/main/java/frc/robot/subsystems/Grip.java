@@ -21,6 +21,6 @@ public class Grip extends SubsystemBase{
     }
 
     public void stop() {
-        gripMotor.set(0);
+        gripMotor.stopMotor();
     }
 }

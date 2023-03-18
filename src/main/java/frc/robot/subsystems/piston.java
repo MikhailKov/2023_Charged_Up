@@ -1,16 +1,17 @@
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class piston extends SubsystemBase {
-    private Solenoid sole;
+    private DoubleSolenoid sole;
 
-    public piston(Solenoid p) {
+    public piston(DoubleSolenoid p) {
         sole = p;
+        sole.set(Value.kReverse);
     }
 
     public void toggleSolenoid() {
         sole.toggle();
-        System.out.println("toggleSolenoid");
     }
 }

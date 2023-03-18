@@ -22,15 +22,10 @@ public class ClampPistonCommand extends CommandBase {
     public void execute() {}
 
     @Override 
-    public void end(boolean interrupted) {
-        System.out.println("Ended");    
-    }
+    public void end(boolean interrupted) {}
 
     @Override
     public boolean isFinished() {
         return true;
     }
-
-    @Override
-    public boolean runsWhenDisabled() {return true;} 
 }

@@ -13,7 +13,7 @@ import frc.robot.commands.*;
  */
 public class OI {
   public OI() {
-    RobotMap.backButton.onTrue(new ClampPistonCommand(Robot.m_piston));
+    RobotMap.bButton.onTrue(new ClampPistonCommand(Robot.m_piston));
 
     RobotMap.xButton.whileTrue(new RobotArmManualCommand(Robot.arm));
 

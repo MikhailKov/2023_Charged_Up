@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
     Cameras = new AprilTagVision();
     m_piston = new piston(RobotMap.p);
     arcade = new ArcadeMovement();
-    arm = new RobotArm(RobotMap.ROBOT_ARM_MOTOR_CHANNEL, 1);
+    arm = new RobotArm(RobotMap.armPiston);
     grip = new Grip(RobotMap.ROBOT_GRIP_MOTOR_CHANNEL, 1);
 
     //Intialize Autonomous Commands
@@ -95,6 +95,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     arcade.drive(); 
     CommandScheduler.getInstance().run();
+    SmartDashboard.updateValues();
   }
 
   /**

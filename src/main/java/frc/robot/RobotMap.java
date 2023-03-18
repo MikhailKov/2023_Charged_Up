@@ -7,16 +7,12 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -41,8 +37,7 @@ public class RobotMap {
         // Digital (0-9, 10-25)
         // Motor Channels 2023
         public static int LEFT_MOTOR_CHANNEL = 1, RIGHT_MOTOR_CHANNEL = 0;
-        public static int ROBOT_ARM_MOTOR_CHANNEL = 2;
-        public static int ROBOT_GRIP_MOTOR_CHANNEL = 4;
+        public static int ROBOT_GRIP_MOTOR_CHANNEL = 2;
 
         //Encoder Channels
         public static int ROBOT_ARM_ENCODER_ONE_CHANNEL_A = 4, ROBOT_ARM_ENCODER_ONE_CHANNEL_B = 5, ROBOT_ARM_ENCODER_TWO_CHANNEL_A = 6, ROBOT_ARM_ENCODER_TWO_CHANNEL_B = 7;
@@ -56,8 +51,9 @@ public class RobotMap {
         
         // link to how pneumatics channels work here https://docs.wpilib.org/en/stable/docs/software/hardware-apis/pneumatics/pneumatics.html
         //Piston Stuff
-        public static final int PISTON_CHANNEL = 2;
-        public static Solenoid p = new Solenoid(0, PneumaticsModuleType.CTREPCM, PISTON_CHANNEL);
+        public static final int PISTON_CHANNEL_ONE = 2, PISTON_CHANNEL_TWO = 3;
+        public static DoubleSolenoid p = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, PISTON_CHANNEL_ONE, PISTON_CHANNEL_TWO);
+        
         public static final int ARM_PISTON_CHANNEL_ONE = 1, ARM_PISTON_CHANNEL_TWO = 0;
         public static DoubleSolenoid armPiston = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, ARM_PISTON_CHANNEL_ONE, ARM_PISTON_CHANNEL_TWO);
 
