@@ -95,7 +95,6 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     arcade.drive(); 
     CommandScheduler.getInstance().run();
-    SmartDashboard.updateValues();
   }
 
   /**
