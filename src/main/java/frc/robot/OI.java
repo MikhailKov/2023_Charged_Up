@@ -22,22 +22,5 @@ public class OI {
 
     RobotMap.rightBumper.whileTrue(new GripCommand(Robot.grip, true));
     RobotMap.leftBumper.whileTrue(new GripCommand(Robot.grip, false));
-    /*
-    Goals for Xbox Controller Button Pressing Mapping
-    -------------------------------------------------
-    D-Pad: 
-    Left Stick: 
-    Right Stick: 
-    Left Trigger: 
-    Right Trigger: 
-    Left Bumper: 
-    Right Bumper: 
-    X: 
-    Y: 
-    A: 
-    B: 
-    */
-    
-    
   }
 }
