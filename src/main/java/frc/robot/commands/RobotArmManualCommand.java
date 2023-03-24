@@ -8,21 +8,21 @@ import frc.robot.subsystems.RobotArm;
 public class RobotArmManualCommand extends CommandBase {
 
     private RobotArm robotArm;
-    private boolean goUp;
+    private boolean goDown;
 
-    public RobotArmManualCommand(RobotArm robotArm) {
+    public RobotArmManualCommand(RobotArm robotArm, boolean goDown) {
         this.robotArm = robotArm;
-        this.goUp = false;
+        this.goDown = goDown;
         addRequirements(this.robotArm);
     }
 
     @Override
     public void initialize() {
-        if(goUp) {
-            robotArm.up();
+        if(goDown) {
+            robotArm.down();
         }
         else {
-            robotArm.down();
+            robotArm.up();
         }
     }
 
@@ -33,7 +33,7 @@ public class RobotArmManualCommand extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return (!goUp && !RobotMap.XController.getXButton()) || (goUp && !RobotMap.XController.getBButton());
+        return (!RobotMap.XController.getXButton() && !RobotMap.XController.getBButton());
     }
 
     @Override

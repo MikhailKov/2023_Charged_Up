@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.Timer;
 import frc.robot.RobotMap;
 import frc.robot.commands.ClampPistonCommand;
 import frc.robot.commands.GripCommand;
-import frc.robot.commands.RobotArmCommand;
 
 
 public class PreloadScore extends CommandBase{
@@ -50,9 +49,9 @@ public class PreloadScore extends CommandBase{
         //extend arm
         //this assumes arm starts at lowest position
         if(linedUp && !armUp) {
-            CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, true));
-            CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, true));
-            CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, true));
+            // CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, true));
+            // CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, true));
+            // CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, true));
             armUp = true;
         }
         //drive forward
@@ -64,9 +63,9 @@ public class PreloadScore extends CommandBase{
             CommandScheduler.getInstance().schedule(new ClampPistonCommand(Robot.m_piston));
             CommandScheduler.getInstance().schedule(new GripCommand(Robot.grip, true));
             CommandScheduler.getInstance().schedule(new GripCommand(Robot.grip, false));
-            CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, false));
-            CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, false));
-            CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, false));
+            // CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, false));
+            // CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, false));
+            // CommandScheduler.getInstance().schedule(new RobotArmCommand(Robot.arm, false));
             scoredPoint = true;
         }
     }

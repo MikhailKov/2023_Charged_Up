@@ -38,11 +38,13 @@ public class AutonomousTwo extends CommandBase {
         //is off the charging station BUT is still at an angle so we can get points
 
         double angle = gyro.getAngle();
-        leftCommunity = true;
-        if (encoderL.getDistance() >= 10)
+        
+        if(!leftCommunity && (angle <= -1 || angle >= 1)) {
             leftCommunity = true;
-        else if (encoderL.getDistance() < 10 && !leftCommunity)
+        }
+        else if(!leftCommunity && angle > -1 && angle < 1) {
             Robot.Drive.arcadeDrive(0, -.5);
+        }
         else if (leftCommunity && angle <= -1)
             Robot.Drive.arcadeDrive(0, .5);
         else if (leftCommunity && angle >= 1)

@@ -13,9 +13,10 @@ import frc.robot.commands.*;
  */
 public class OI {
   public OI() {
-    RobotMap.bButton.onTrue(new ClampPistonCommand(Robot.m_piston));
+    RobotMap.backButton.onTrue(new ClampPistonCommand(Robot.m_piston));
 
-    RobotMap.xButton.whileTrue(new RobotArmManualCommand(Robot.arm));
+    RobotMap.xButton.whileTrue(new RobotArmManualCommand(Robot.arm, false));
+    RobotMap.bButton.whileTrue(new RobotArmManualCommand(Robot.arm, true));
 
     RobotMap.yButton.onTrue(new SpeedUp(false));
     RobotMap.aButton.onTrue(new SpeedUp(true));
