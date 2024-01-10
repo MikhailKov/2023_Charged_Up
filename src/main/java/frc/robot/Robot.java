@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.*;
 import frc.robot.commands.autonomous.*;
+import frc.robot.commands.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -73,9 +74,10 @@ public class Robot extends TimedRobot {
     
     //Autonomous Options
     m_chooser = new SendableChooser<Command>();
-    m_chooser.setDefaultOption("Autonomous 2 (Default) (12 points)", m_autonomousTwo);
+    m_chooser.setDefaultOption("Preload Score (6 points)", m_preloadScore);
+    m_chooser.addOption("Autonomous 2 (12 points)", m_autonomousTwo);
     m_chooser.addOption("Autonomous 1 (3 points?)", m_autonomousOne);
-    m_chooser.addOption("Preload Score (6 points)", m_preloadScore);
+    
 
     //Add chooser to smart dashboard
     SmartDashboard.putData(m_chooser);
@@ -130,7 +132,7 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_chooser.getSelected();
     if(m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
-      CommandScheduler.getInstance().run();
+    
     }
     
   }

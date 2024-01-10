@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -57,6 +58,7 @@ public class RobotMap {
         public static final int ARM_PISTON_CHANNEL_ONE = 1, ARM_PISTON_CHANNEL_TWO = 0;
         public static DoubleSolenoid armPiston = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, ARM_PISTON_CHANNEL_ONE, ARM_PISTON_CHANNEL_TWO);
 
+        public static Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
         
         //Gyroscope Stuff
         public static ADXRS450_Gyro gyro = new ADXRS450_Gyro();

@@ -13,6 +13,7 @@ public class SpeedUp extends CommandBase{
     public SpeedUp(boolean slowDown)
     {
         this.slowDown = slowDown;
+        ArcadeMovement.scalar = .90;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class SpeedUp extends CommandBase{
                     ArcadeMovement.state--;
                     break;
                 case 1:
-                    ArcadeMovement.scalar = 1;
+                    ArcadeMovement.scalar = .90;
                     ArcadeMovement.state--;
                     break;
                 default: 

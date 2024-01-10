@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class RobotArm extends SubsystemBase{
-    public DoubleSolenoid armPiston;
+    private DoubleSolenoid armPiston;
 
     public RobotArm(DoubleSolenoid piston) {
         armPiston = piston;

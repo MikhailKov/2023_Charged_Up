@@ -13,15 +13,15 @@ import frc.robot.commands.*;
  */
 public class OI {
   public OI() {
-    RobotMap.backButton.onTrue(new ClampPistonCommand(Robot.m_piston));
+    RobotMap.backButton.onTrue();
 
-    RobotMap.xButton.whileTrue(new RobotArmManualCommand(Robot.arm, false));
-    RobotMap.bButton.whileTrue(new RobotArmManualCommand(Robot.arm, true));
+    RobotMap.xButton.whileTrue();
+    RobotMap.bButton.whileTrue();
 
-    RobotMap.yButton.onTrue(new SpeedUp(false));
-    RobotMap.aButton.onTrue(new SpeedUp(true));
+    RobotMap.yButton.onTrue();
+    RobotMap.aButton.onTrue();
 
-    RobotMap.rightBumper.whileTrue(new GripCommand(Robot.grip, true));
-    RobotMap.leftBumper.whileTrue(new GripCommand(Robot.grip, false));
+    RobotMap.rightBumper.whileTrue();
+    RobotMap.leftBumper.whileTrue();
   }
 }

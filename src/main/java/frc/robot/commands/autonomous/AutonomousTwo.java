@@ -11,14 +11,11 @@ public class AutonomousTwo extends CommandBase {
     
 
     Timer time;
-    public Encoder encoderL, encoderR;
     public ADXRS450_Gyro gyro;
     boolean leftCommunity;
 
     public AutonomousTwo() {
         addRequirements(Robot.Drive);
-        encoderL = Robot.Drive.encoderL;
-        encoderR = Robot.Drive.encoderR;
         gyro = RobotMap.gyro;
     }
 
@@ -26,8 +23,9 @@ public class AutonomousTwo extends CommandBase {
     public void initialize()
     {
         time = new Timer();
-        gyro.reset();
         gyro.calibrate();
+        gyro.reset();
+        Robot.Drive.arcadeDrive(0, 1);
     }
 
     @Override
@@ -37,27 +35,24 @@ public class AutonomousTwo extends CommandBase {
         //so the robot DOES NOT jiust immediately end after finishing, it's important that it ends while the bumper
         //is off the charging station BUT is still at an angle so we can get points
 
-        double angle = gyro.getAngle();
+        //Negative angle -> positive y
+
+        int angle = (int) gyro.getAngle();
+        System.out.println(angle);
         
-        if(!leftCommunity && (angle <= -1 || angle >= 1)) {
+        if(!leftCommunity && (angle <= -5 || angle >= 5)) {
             leftCommunity = true;
         }
-        else if(!leftCommunity && angle > -1 && angle < 1) {
-            Robot.Drive.arcadeDrive(0, -.5);
+        else if(!leftCommunity) 
+            Robot.Drive.arcadeDrive(0, -1);
+        else if(leftCommunity) {
+            Robot.Drive.arcadeDrive(0, -1 * (angle/(Math.abs(angle))) * .5);
         }
-        else if (leftCommunity && angle <= -1)
-            Robot.Drive.arcadeDrive(0, .5);
-        else if (leftCommunity && angle >= 1)
-            Robot.Drive.arcadeDrive (0, -.5);
     }
 
     @Override
     public boolean isFinished() {
-       if(time.hasElapsed(15)) {
-        return false;
-       } else {
-        return false;
-       }
+       return false;
     }
 
     @Override
